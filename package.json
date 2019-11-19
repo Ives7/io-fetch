@@ -50,5 +50,8 @@
     "build:dev": "cross-env NODE_ENV=development rollup -c  ./rollup.config.js -w",
     "doc:dev": "docsify serve ./docs",
     "doc:build": "vuepress build ./docs"
+  },
+  "repository": {
+
   }
 }
