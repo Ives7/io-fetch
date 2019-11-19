@@ -1,10 +1,10 @@
-import { RequestConfig, TmsResponse } from 'src/interface';
+import { RequestConfig, IFetchResponse } from 'src/interface';
 import { transformConfig } from 'src/helper/transform-config';
 import { handleResponse, OriginResponseWrapper } from '../helper/handle-response';
 import { wrapperResponse } from 'src/helper/wrapper-response';
 
 type Fetch = typeof fetch;
-export function fetchRequest<T = any, R = TmsResponse<T>>(
+export function fetchRequest<T = any, R = IFetchResponse<T>>(
   config: RequestConfig = {},
   fetch: Fetch
 ): Promise<R> {

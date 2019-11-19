@@ -68,7 +68,8 @@ export interface Checker {
 
 export type CheckHelperFunctionName = keyof Checker;
 
-export interface TmsResponse<T = any> {
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
+export interface IFetchResponse<T = any> {
   responseData: T;
   originResponse: Response;
   requestConfig: RequestConfig;

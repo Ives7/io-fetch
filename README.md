@@ -31,10 +31,10 @@ const TmsFetch = require('i-fetch');
 
 ### 使用
 
-get :
+**get 请求** :
 
 ```javascript
-const $http = new TmsFetch();
+const $http = new IFetch();
 // 真实请求url为/article?pageNum=1&pageSize=20
 // get 请求不要传body
 $http
@@ -59,28 +59,10 @@ $http
   });
 ```
 
-post 请求
+**post 请求**
 
 ```javascript
-const $http = new TmsFetch({
-  responseType: 'json'
-});
-$http
-  .post('/user', {
-    body: {
-      name: 'foo',
-      age: 7
-    }
-  })
-  .then(response => {
-    console.log(response);
-  });
-```
-
-post 请求
-
-```javascript
-const $http = new TmsFetch({
+const $http = new IFetch({
   responseType: 'json'
 });
 $http
@@ -98,10 +80,10 @@ $http
   });
 ```
 
-delete 请求
+**delete** 请求
 
 ```javascript
-const $http = new TmsFetch({
+const $http = new IFetch({
   responseType: 'json',
   headers: {
     'content-type': 'application/json'
@@ -118,10 +100,10 @@ $http
   });
 ```
 
-put&patch
+**put&patch**
 
 ```javascript
-const $http = new TmsFetch({
+const $http = new IFetch({
   responseType: 'json'
 });
 $http
@@ -145,4 +127,26 @@ $http
   });
 ```
 
+**结合 async/await**
+
+```javascript
+const $http = new IFetch();
+
+async function getUser() {
+  try {
+    const response = await $http.request({ method: 'get', url: '/user' });
+    return response.responseData;
+    // 或const response = $http.get('/user')
+  } catch (e) {
+    console.log(e);
+  }
+}
+```
+
 > delete get head 请求不得传入 body
+
+## 拦截器
+类axios 文档内容待撰写
+## request-config-api
+类axios/fetch 文档内容待撰写
+

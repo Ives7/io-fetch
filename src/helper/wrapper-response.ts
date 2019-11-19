@@ -1,11 +1,11 @@
-import { RequestConfig, TmsResponse } from 'src/interface';
+import { RequestConfig, IFetchResponse } from 'src/interface';
 import { checker } from 'src/helper/checker';
 
 export const wrapperResponse = function wrapperResponse<T = any>(
   responseData: T,
   originResponse: Response,
   requestConfig: RequestConfig
-): TmsResponse<T> {
+): IFetchResponse<T> {
   if (typeof responseData === 'string') {
     try {
       responseData = JSON.parse(responseData);

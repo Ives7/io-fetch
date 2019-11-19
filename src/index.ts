@@ -1,3 +1,3 @@
-import { TmsFetch } from 'src/core/tms-fetch';
+import { IFetch } from 'src/core/i-fetch';
 
-export default TmsFetch;
+export default IFetch;
