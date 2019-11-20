@@ -3,6 +3,7 @@ import { RequestConfig } from 'src/interface';
 import * as nodeFetch from 'node-fetch';
 import * as Builder from 'src/helper/build-url';
 import * as TransformBody from 'src/helper/transform-body';
+import * as CreateFullURL from 'src/helper/create-full-url';
 
 declare const global: NodeJS.Global & {
   Headers: typeof nodeFetch.Headers;
@@ -25,11 +26,11 @@ describe('desc-->transformRequest', function() {
     expect(config).toMatchObject(defaultRequestConfig);
   });
 
-  it('it-->不传url会得到/', () => {
+  it('it-->不传url会得到empty', () => {
     const config: RequestConfig = {};
 
     const expectConfig: RequestConfig = {
-      url: '/'
+      url: ''
     };
     expect(transformConfig(config)).toEqual(expectConfig);
   });
@@ -76,7 +77,7 @@ describe('desc-->transformRequest', function() {
   it('buildURL方法被调用', function() {
     const k = jest.spyOn(Builder, 'buildURL');
     transformConfig({});
-    expect(k).toBeCalledWith('/', undefined);
+    expect(k).toBeCalledWith('', undefined);
     k.mockClear();
   });
 
@@ -91,6 +92,15 @@ describe('desc-->transformRequest', function() {
     const config: RequestConfig = transformConfig({ headers: {} });
 
     expect(config.headers).toBeInstanceOf(Headers);
+  });
+
+  it('传入baseURL会调用createURL方法', function() {
+    const k = jest.spyOn(CreateFullURL,'createFullURL');
+
+    transformConfig({
+      baseURL: '/api'
+    });
+    expect(k).toBeCalledWith('/api','');
   });
 
   it('it-->传入Headers对象，可以得到Headers实例', () => {

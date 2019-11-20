@@ -12,7 +12,7 @@
 ### 安装
 
 ```shell script
-yarn add i-fetch
+yarn add io-fetch
 ```
 
 ### 引用
