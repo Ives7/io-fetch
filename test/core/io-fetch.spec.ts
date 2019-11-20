@@ -1,26 +1,26 @@
 import '../__mocks__/setUpFetch';
-import { IFetch } from 'src/core/i-fetch';
+import { IoFetch } from 'src/core/i-o-fetch';
 import * as FetchRequest from 'src/core/fetch-request';
 import { InterceptorManager } from 'src/core/interceptor-manager';
 import { RequestConfig, IFetchResponse } from 'src/interface';
 
 describe('tms-fetch', function() {
-  const tmsFetch = new IFetch();
+  const ioFetch = new IoFetch();
 
   it('初始化interceptor', () => {
-    expect(tmsFetch.interceptors.response).toBeInstanceOf(InterceptorManager);
-    expect(tmsFetch.interceptors.request).toBeInstanceOf(InterceptorManager);
+    expect(ioFetch.interceptors.response).toBeInstanceOf(InterceptorManager);
+    expect(ioFetch.interceptors.request).toBeInstanceOf(InterceptorManager);
   });
 
   it('使用请求拦截器会被调用', () => {
-    const $tmsFetch = new IFetch();
+    const $ioFetch = new IoFetch();
     const requestInter = jest.fn().mockImplementation((config: RequestConfig) => config);
     const responseInter = jest.fn().mockImplementation((response: IFetchResponse) => response);
     jest.spyOn(FetchRequest, 'fetchRequest').mockResolvedValue({});
 
-    $tmsFetch.interceptors.request.use(requestInter);
-    $tmsFetch.interceptors.response.use(responseInter);
-    return $tmsFetch.request().then(() => {
+    $ioFetch.interceptors.request.use(requestInter);
+    $ioFetch.interceptors.response.use(responseInter);
+    return $ioFetch.request().then(() => {
       expect(requestInter).toBeCalled();
       expect(responseInter).toBeCalled();
     });
@@ -28,18 +28,13 @@ describe('tms-fetch', function() {
 
   it('存在常规方法', function() {
     const hasAllMethods = Boolean(
-      tmsFetch.get &&
-        tmsFetch.post &&
-        tmsFetch.delete &&
-        tmsFetch.put &&
-        tmsFetch.patch &&
-        tmsFetch.head
+      ioFetch.get && ioFetch.post && ioFetch.delete && ioFetch.put && ioFetch.patch && ioFetch.head
     );
     expect(hasAllMethods).toBeTrue();
   });
 
   it('mergeConfig正常', function() {
-    const $fetch = new IFetch({
+    const $fetch = new IoFetch({
       url: '/'
     });
     // @ts-ignore
@@ -51,7 +46,7 @@ describe('tms-fetch', function() {
   });
 
   it('调用get等简写方法方法会调用request方法', () => {
-    const $fetch = new IFetch();
+    const $fetch = new IoFetch();
     const k = jest.spyOn($fetch, 'request');
 
     return $fetch.get('/').then(() => {
@@ -61,7 +56,7 @@ describe('tms-fetch', function() {
   });
 
   it('调用request会触发mergeConfig', function() {
-    const $fetch = new IFetch();
+    const $fetch = new IoFetch();
     // @ts-ignore
     const k = jest.spyOn($fetch, 'getMergeConfig');
     const f = jest.spyOn(FetchRequest, 'fetchRequest').mockResolvedValue(new Response({} as any));

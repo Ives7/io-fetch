@@ -1,7 +1,10 @@
 {
-  "name": "i-fetch",
-  "umdName": "IFetch",
-  "version": "0.0.1",
+  "name": "io-fetch",
+  "umdName": "IoFetch",
+  "version": "0.0.2",
+  "private": false,
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-runtime": "^7.6.2",
@@ -47,8 +50,5 @@
     "test": "jest",
     "build": "cross-env NODE_ENV=production rollup -c ./rollup.config.js",
     "build:dev": "cross-env NODE_ENV=development rollup -c  ./rollup.config.js -w"
-  },
-  "repository": {
-    "url": "https://github.com/Ives7/i-fetch"
   }
 }

@@ -20,13 +20,13 @@ yarn add i-fetch
 esm:
 
 ```javascript
-import TmsFetch from 'i-fetch';
+import IoFetch from 'io-fetch';
 ```
 
 commonjs:
 
 ```javascript
-const TmsFetch = require('i-fetch');
+const IoFetch = require('io-fetch');
 ```
 
 ### 使用
@@ -34,7 +34,7 @@ const TmsFetch = require('i-fetch');
 **get 请求** :
 
 ```javascript
-const $http = new IFetch();
+const $http = new IoFetch();
 // 真实请求url为/article?pageNum=1&pageSize=20
 // get 请求不要传body
 $http
@@ -62,7 +62,7 @@ $http
 **post 请求**
 
 ```javascript
-const $http = new IFetch({
+const $http = new IoFetch({
   responseType: 'json'
 });
 $http
@@ -83,7 +83,7 @@ $http
 **delete** 请求
 
 ```javascript
-const $http = new IFetch({
+const $http = new IoFetch({
   responseType: 'json',
   headers: {
     'content-type': 'application/json'
@@ -103,7 +103,7 @@ $http
 **put&patch**
 
 ```javascript
-const $http = new IFetch({
+const $http = new IoFetch({
   responseType: 'json'
 });
 $http
@@ -130,7 +130,7 @@ $http
 **结合 async/await**
 
 ```javascript
-const $http = new IFetch();
+const $http = new IoFetch();
 
 async function getUser() {
   try {
@@ -146,7 +146,24 @@ async function getUser() {
 > delete get head 请求不得传入 body
 
 ## 拦截器
-类axios 文档内容待撰写
-## request-config-api
-类axios/fetch 文档内容待撰写
 
+```javascript
+const $http = new IoFetch();
+
+$http.interceptors.request.use(config => {
+  return {
+    ...config,
+    headers: {
+      token: 'foo-bar'
+    }
+  };
+});
+
+$http.interceptors.response.use(response => {
+  return response.responseData;
+});
+```
+
+## request-config-api
+
+类 axios/fetch 文档内容待撰写

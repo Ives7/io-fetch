@@ -1,3 +1,3 @@
-import { IFetch } from 'src/core/i-fetch';
+import { IoFetch } from 'src/core/i-o-fetch';
 
-export default IFetch;
+export default IoFetch;

@@ -29,10 +29,8 @@ const generateRollupOptions = function generateRollupOptions(path) {
     const entryFile = join(path, 'src/index.ts');
     const outputFile = join(path, 'lib/index.js');
     const externalList = [];
-
     const plugins = [
-
-
+      env === 'production' && terserInstance,
 
       nodeResolve({
         browser: true,
@@ -44,9 +42,7 @@ const generateRollupOptions = function generateRollupOptions(path) {
         tsconfig: join(path, './tsconfig.json'),
         extensions
         //sourceMap: true
-      }),
-      env === 'production' && terserInstance,
-
+      })
     ].filter(Boolean);
 
     if (!pkg) return;
@@ -64,11 +60,7 @@ const generateRollupOptions = function generateRollupOptions(path) {
         //sourceMap: 'inline' ,
         name: pkg['umdName'] || pkg['name']
       }
-      // external: id => {
-      //   return externalList.some(ex => {
-      //     return new RegExp(ex).test(id);
-      //   });
-      // }
+
     };
   } catch (e) {}
 };

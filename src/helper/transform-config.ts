@@ -7,6 +7,7 @@ export const defaultRequestConfig: RequestConfig = {
   url: '/'
 };
 
+
 export function transformConfig(requestConfig: RequestConfig = {}): RequestConfig {
   const resultConfig: RequestConfig = {
     ...defaultRequestConfig,
