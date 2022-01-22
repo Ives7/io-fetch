@@ -34,7 +34,7 @@
     "jest-chain": "^1.1.2",
     "jest-extended": "^0.11.2",
     "karma": "^4.4.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.27.1",
